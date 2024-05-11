@@ -1,9 +1,8 @@
 import express from 'express';
+import { createUser } from '../controllers/userControllers.js';
 
 const router = express.Router();
 
-router.post("/auth", async (req, res) => {
-    res.status(200).json({ message: 'Auth user' })
-});
+router.post("/", createUser);
 
 export default router;
