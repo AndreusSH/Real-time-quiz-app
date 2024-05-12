@@ -4,7 +4,6 @@ import generateToken from '../utils/generateToken.js'
 //route POST /api/users/auth
 //@access Public
 const authUser = async (req, res) => {
-  console.log(req.body)
   const { email, password } = req.body
   const user = await User.findOne({ email })
   if (user && (await user.matchPassword(password))) {
@@ -52,7 +51,6 @@ const registerUser = async (req, res) => {
 //route POST /api/users/logout
 //@access Public
 const logoutUser = async (req, res) => {
-  console.log(res)
   res.cookie('jwt', '', {
     httpOnly: true,
     expires: new Date(0)
@@ -63,7 +61,6 @@ const logoutUser = async (req, res) => {
 //route GET /api/users/profile
 //@access Private
 const getUserProfile = async (req, res) => {
-  console.log(req.user)
   const user = {
     __id: req.user.id,
     name: req.user.name,
