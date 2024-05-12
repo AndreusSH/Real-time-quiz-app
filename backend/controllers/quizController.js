@@ -11,4 +11,15 @@ const createQuiz = async (req, res) => {
     }
 }
 
-export { createQuiz };
+const getAllQuizzes = async(req,res) =>{
+    try {
+        const { question, answers } = req.body;
+        // Create a new quiz document with the provided question and answers
+        const allQuizzes = await Quiz.find();
+        res.status(201).json(allQuizzes);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+}
+
+export { createQuiz, getAllQuizzes };
