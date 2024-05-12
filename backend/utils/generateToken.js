@@ -1,9 +1,7 @@
 import jwt from 'jsonwebtoken';
 
 const generateToken = (res, userId) => {
-console.log("res to create a token", res)
-console.log("userId", userId)
-  const token = jwt.sign({ userId }, process.env.JWT_SECRET, {
+   const token = jwt.sign({ userId }, process.env.JWT_SECRET, {
     expiresIn: '10d',
   });
 
@@ -14,5 +12,4 @@ console.log("userId", userId)
     maxAge: 10 * 24 * 60 * 60 * 1000, // 10 days
   });
 };
-console.log(`This is the token which has been generated ${generateToken}`)
-export default generateToken;
+ export default generateToken;
