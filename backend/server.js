@@ -1,6 +1,6 @@
 //Entry point for our server
 import express from 'express' //in json I set type: module to use this syntax
-const cors = require('cors');
+import cors from 'cors'
 
 import dotenv from 'dotenv'
 dotenv.config()
@@ -11,8 +11,7 @@ import connectDB from './config/db.js'
 
 connectDB();
 
-// Enable CORS for all origins
-app.use(cors());
+
 
 
 const app = express()
@@ -22,7 +21,8 @@ app.use(express.urlencoded({ extended: true }))
 app.use(cookieParser());
 app.use('/api/users', userRoutes);
 app.get('/', (req, res) => res.send('Server is ready'));
- 
+// Enable CORS for all origins
+app.use(cors());
 
 app.listen(port, () => console.log(`Server started on route ${port}`))
 
