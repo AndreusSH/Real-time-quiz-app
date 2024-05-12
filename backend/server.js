@@ -1,5 +1,7 @@
 //Entry point for our server
 import express from 'express' //in json I set type: module to use this syntax
+const cors = require('cors');
+
 import dotenv from 'dotenv'
 dotenv.config()
 import cookieParser from 'cookie-parser'
@@ -8,6 +10,9 @@ import userRoutes from './routes/userRoutes.js'
 import connectDB from './config/db.js'
 
 connectDB();
+
+// Enable CORS for all origins
+app.use(cors());
 
 
 const app = express()
