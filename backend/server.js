@@ -15,14 +15,15 @@ connectDB();
 
 
 const app = express()
+// Enable CORS for all requests  
+app.use(cors());
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 app.use(cookieParser());
 app.use('/api/users', userRoutes);
 app.get('/', (req, res) => res.send('Server is ready'));
-// Enable CORS for all origins
-app.use(cors());
+
 
 app.listen(port, () => console.log(`Server started on route ${port}`))
 
