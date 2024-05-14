@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import Profile from "./Profile";
+
 export const AdminPanel = () => {
   return (
     <>
