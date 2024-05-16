@@ -26,7 +26,7 @@ const Profile = () => {
 
   return (
     <div>
-      <h2>Profile</h2>
+       
       <h3>Your Quizzes</h3>
       <div className='row'>
         {quizzes.map((quiz, index) => (
