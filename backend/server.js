@@ -36,6 +36,11 @@ io.on('connection', socket => {
   // Broadcast a message to all clients when a new player joins
   socket.broadcast.emit('message', 'A new player has joined the game')
 
+  socket.on('participants', () => {
+    let participants = io.engine.clientsCount
+    // Emit the count back to the client that requested it
+    io.emit('p', participants)
+   })
   // Handle selectedQuiz event
   socket.on('selectedQuiz', quiz => {
     console.log(`Received selected quiz: ${JSON.stringify(quiz)}`)
@@ -47,24 +52,30 @@ io.on('connection', socket => {
     // Handle the received quiz data here, such as broadcasting it to other clients
   })
 
-  socket.on('pauseNotification', message => {
-    console.log('did I even receive pause notification?', message.message);
-    //Once somebody booked to answer, I send a notification to the others!
-    socket.broadcast.emit("hello", message);
-  })
+socket.on('pauseNotification', message => {
+  console.log('did I even receive pause notification?', message.message);
+  // Send the 'hello' event to all other clients except the one that sent the 'pauseNotification' event
+  socket.broadcast.emit('hello', message);
+});
 
   socket.on('scoreUpdate', async scoreInfo => {
-    console.log('timestamp',scoreInfo.timestamp)
+    console.log('timestamp', scoreInfo.timestamp)
     console.log('connected clients', io.engine.clientsCount)
     console.log(
       `${socket.id} Received score update: ${JSON.stringify(scoreInfo)}`
     )
     try {
       const playerExists = await Score.findOne({ playerId: socket.id })
-      if (playerExists) {
-        console.log('Player does exist', playerExists.score)
-        playerExists.score += scoreInfo.score;
-        await playerExists.save();
+       if (playerExists) {
+        if (playerExists.score === 1) {
+          console.log('and the winner is: ', socket.id)
+          //socket.broadcast.emit('winner', socket.id)
+          socket.emit('winner', socket.id)
+
+           //io.close()
+         }
+         playerExists.score += scoreInfo.score
+        await playerExists.save()
       } else {
         // Save the score in the database
         const newScore = new Score({
@@ -80,9 +91,9 @@ io.on('connection', socket => {
       console.error('Error saving score to database:', error)
     }
 
-    io.emit('newQuiz', 'prova')
+    
   })
-  
+
   // Handle disconnection
   socket.on('disconnect', () => {
     console.log('user disconnected:', socket.id)
