@@ -7,6 +7,4 @@ router.post('/quiz', createQuiz);
 router.get('/allQuizzes', getAllQuizzes);
 router.get('/playQuiz/:id', selectAQuiz);
 
-
-
 export default router;
