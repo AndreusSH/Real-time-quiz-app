@@ -20,7 +20,19 @@ const server = http.createServer(app)
 const io = new Server(server) // Initialize Socket.IO Server
 
 // Enable CORS for all requests
-app.use(cors())
+const allowedOrigins = ['https://graceful-crumble-1f87ec.netlify.app'];
+app.use(cors({
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.indexOf(origin) === -1) {
+      const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+      return callback(new Error(msg), false);
+    }
+    return callback(null, true);
+  },
+  credentials: true // If you want to expose cookies to the frontend
+}));
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
