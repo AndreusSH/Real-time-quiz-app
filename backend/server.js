@@ -34,7 +34,7 @@ app.use(cors({
   credentials: true // If you want to expose cookies to the frontend
 }));
 
-app.use((req, res, next) =&gt; {
+app.use((req, res, next) => {
   // Allow requests from all origins
   res.setHeader('Access-Control-Allow-Origin', '*');
   // Allow specific HTTP methods
