@@ -3,7 +3,7 @@
 This is a real-time quiz application with a React frontend and a Node.js backend.
 
 ## Accessing the Admin Panel
-
+From here the presenter, admins the questions to the participants
 You can access the admin panel at the following URL:
 
 [Admin Panel](https://graceful-crumble-1f87ec.netlify.app/)
