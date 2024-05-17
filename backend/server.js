@@ -27,7 +27,7 @@ app.use(cookieParser())
 app.use('/api/users', userRoutes)
 app.use('/api/quizzes', quizRoutes)
 
-app.get('/', (req, res) => res.send('Server is ready'))
+//app.all('/', (req, res) => res.send('Server is ready'))
 
 // Socket.IO connection handling
 io.on('connection', socket => {
