@@ -23,6 +23,7 @@ export const AdminPanel = () => {
       </div>
       You can create a new quiz if you like:{' '}
       <Link to={'/api/quizzes/createQuiz'}>Add a quiz</Link>
+      <Link to={'/api/quizzes/playQuiz'}>Add a quiz</Link>
       {winner ? (<h2>We have a winner</h2>) : (null)}
       <Profile />
     </>
