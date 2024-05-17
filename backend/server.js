@@ -3,6 +3,7 @@ import http from 'http'
 import { Server } from 'socket.io'
 import cors from 'cors'
 import dotenv from 'dotenv'
+import path from 'path';
 import cookieParser from 'cookie-parser'
 import connectDB from './config/db.js'
 import userRoutes from './routes/userRoutes.js'
@@ -28,6 +29,14 @@ app.use('/api/users', userRoutes)
 app.use('/api/quizzes', quizRoutes)
 
 //app.all('/', (req, res) => res.send('Server is ready'))
+// Serve static files from the 'public' directory
+const __dirname = path.resolve(); // Get the directory name of the current module
+app.use(express.static(path.join(__dirname, 'public'))); // Serve static files from 'public'
+
+// For any other routes, serve the index.html file from the 'public' directory
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 
 // Socket.IO connection handling
 io.on('connection', socket => {
