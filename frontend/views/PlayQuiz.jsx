@@ -11,6 +11,7 @@ const socket = io.connect('http://localhost:8000/', {
 
 const PlayQuiz = () => {
   const winner = useSelector(state => state.winner)
+  console.log('winner', winner)
   const dispatch = useDispatch()
 
  
@@ -145,7 +146,7 @@ const PlayQuiz = () => {
             </Col>
           </Row>
         </Container>
-      ) : winner.winner ? (
+      ) : winner.hasWinner ? (
         <WinnerPage />
       ) : answer === null ? (
         <Col xs={12} md={8}>

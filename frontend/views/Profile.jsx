@@ -27,8 +27,7 @@ const Profile = () => {
   return (
     <div>
        
-      <h3>Your Quizzes</h3>
-      <div className='row'>
+       <div className='row'>
         {quizzes.map((quiz, index) => (
           <div className='col-md-4 mb-4' key={index}>
      

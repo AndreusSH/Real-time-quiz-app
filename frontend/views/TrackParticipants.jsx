@@ -6,7 +6,7 @@ const socket = io.connect('http://localhost:8000/', {
 })
 
 const TrackParticipants = () => {
-  const [numParticipants, setNumParticipants] = useState(0)
+  //const [numParticipants, setNumParticipants] = useState(0)
   const [winner, setWinner] = useState('')
 
   useEffect(() => {
@@ -14,10 +14,12 @@ const TrackParticipants = () => {
     // Listen for the "participants" event from the server
     socket.emit('participants', { p: 'Somebody asked how many participants' })
 
+    {/*}
     socket.on('p', nParticipants => {
       console.log('nParticipants', nParticipants)
       setNumParticipants(nParticipants)
     })
+  */}
 
     socket.on('winner', winnerId => {
       console.log('and the winner is: ', winnerId)
@@ -34,8 +36,7 @@ const TrackParticipants = () => {
   return (
     <>
       {winner ? <p>The winner is: {winner}</p> : null}
-      <div>TrackParticipants</div>
-      <h1>There are {numParticipants} clients connected at the moment</h1>
+      {/*<h1>There are {numParticipants} clients connected at the moment</h1>*/}
     </>
   )
 }
