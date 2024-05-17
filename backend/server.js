@@ -33,6 +33,20 @@ app.use(cors({
   },
   credentials: true // If you want to expose cookies to the frontend
 }));
+
+app.use((req, res, next) =&gt; {
+  // Allow requests from all origins
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  // Allow specific HTTP methods
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  // Allow specific HTTP headers
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  // Allow credentials (if needed)
+  res.setHeader('Access-Control-Allow-Credentials', true);
+  // Continue to next middleware
+  next();
+});
+
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
