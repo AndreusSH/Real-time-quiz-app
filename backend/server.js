@@ -30,13 +30,12 @@ app.use('/api/quizzes', quizRoutes)
 
 //app.all('/', (req, res) => res.send('Server is ready'))
 // Serve static files from the 'public' directory
-const __dirname = path.resolve(); // Get the directory name of the current module
-app.use(express.static(path.join(__dirname, 'public'))); // Serve static files from 'public'
+if (process.env.NODE_ENV === 'production') {
+  //*Set static folder up in production
+  app.use(express.static('client/build'));
 
-// For any other routes, serve the index.html file from the 'public' directory
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
+  app.get('*', (req,res) => res.sendFile(path.resolve(__dirname, 'client', 'build','index.html')));
+}
 
 // Socket.IO connection handling
 io.on('connection', socket => {
