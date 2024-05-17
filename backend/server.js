@@ -36,11 +36,13 @@ io.on('connection', socket => {
   // Broadcast a message to all clients when a new player joins
   socket.broadcast.emit('message', 'A new player has joined the game')
 
+  /*
   socket.on('participants', () => {
     let participants = io.engine.clientsCount
     // Emit the count back to the client that requested it
     io.emit('p', participants)
    })
+   */
   // Handle selectedQuiz event
   socket.on('selectedQuiz', quiz => {
     console.log(`Received selected quiz: ${JSON.stringify(quiz)}`)
@@ -71,7 +73,7 @@ socket.on('pauseNotification', message => {
           console.log('and the winner is: ', socket.id)
           //socket.broadcast.emit('winner', socket.id)
           socket.emit('winner', socket.id)
-
+      
            //io.close()
          }
          playerExists.score += scoreInfo.score
