@@ -67,34 +67,31 @@ socket.on('pauseNotification', message => {
       `${socket.id} Received score update: ${JSON.stringify(scoreInfo)}`
     )
     try {
-      const playerExists = await Score.findOne({ playerId: socket.id })
-       if (playerExists) {
-        if (playerExists.score === 1) {
-          console.log('and the winner is: ', socket.id)
-          //socket.broadcast.emit('winner', socket.id)
-          socket.emit('winner', socket.id)
-      
-           //io.close()
-         }
-         playerExists.score += scoreInfo.score
-        await playerExists.save()
-      } else {
-        // Save the score in the database
-        const newScore = new Score({
+      let player = await Score.findOne({ playerId: socket.id });
+  
+      if (!player) {
+        // Player doesn't exist, create a new score document
+        player = new Score({
           playerId: socket.id,
-          score: scoreInfo.score
-          // Add additional fields if needed
-        })
-        // Save the score document to the database
-        await newScore.save()
-        console.log('Score saved to database:', newScore)
+          score: 1
+        });
+      } else {
+        // Player exists, increment their score
+        player.score += scoreInfo.score;
       }
+  
+      await player.save();
+      
+      // Check if the player's score is now 5, if so, emit the winner event
+      if (player.score === 5) {
+        console.log('and the winner is: ', socket.id)
+        socket.emit('winner', socket.id);
+      }
+      console.log('Score saved to database:', player);
     } catch (error) {
-      console.error('Error saving score to database:', error)
+      console.error('Error saving score to database:', error);
     }
-
-    
-  })
+  });
 
   // Handle disconnection
   socket.on('disconnect', () => {
