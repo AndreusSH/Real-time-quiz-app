@@ -14,10 +14,9 @@ const authUser = async (req, res) => {
       password: user.password
     })
   } else {
-    res.status(401)
-    throw new Error('Invalid Email or password')
+    res.status(401).json({ message: 'Invalid Email or password' })
   }
- }
+}
 
 //route POST /api/users
 //@access Public
@@ -46,7 +45,7 @@ const registerUser = async (req, res) => {
     res.status(400)
     throw new Error('Invalid User')
   }
- }
+}
 
 //route POST /api/users/logout
 //@access Public
@@ -80,7 +79,7 @@ const updateUserProfile = async (req, res) => {
       user.password = req.body.password
     }
 
-    const updateUser = await user.save();
+    const updateUser = await user.save()
     res.status(200).json({
       _id: updateUser._id,
       name: updateUser.name,
@@ -90,6 +89,6 @@ const updateUserProfile = async (req, res) => {
     res.status(400)
     throw new Error('User not found')
   }
- }
+}
 
 export { authUser, registerUser, logoutUser, getUserProfile, updateUserProfile }
