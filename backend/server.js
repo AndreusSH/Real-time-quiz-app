@@ -20,7 +20,7 @@ const server = http.createServer(app)
 const io = new Server(server) // Initialize Socket.IO Server
 
 // Enable CORS for all requests
-const allowedOrigins = ['https://graceful-crumble-1f87ec.netlify.app'];
+const allowedOrigins = ['https://graceful-crumble-1f87ec.netlify.app', 'http://localhost:3000'];
 app.use(cors({
   origin: function (origin, callback) {
     // Allow requests with no origin (like mobile apps or curl requests)
@@ -33,20 +33,6 @@ app.use(cors({
   },
   credentials: true // If you want to expose cookies to the frontend
 }));
-
-app.use((req, res, next) => {
-  // Allow requests from all origins
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  // Allow specific HTTP methods
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-  // Allow specific HTTP headers
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  // Allow credentials (if needed)
-  res.setHeader('Access-Control-Allow-Credentials', true);
-  // Continue to next middleware
-  next();
-});
-
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
