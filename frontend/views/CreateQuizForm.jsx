@@ -34,7 +34,7 @@ const CreateQuizForm = () => {
       return;
     }
     else{
-      axios.post('http://localhost:8000/api/quizzes/quiz', { question, answers })
+      axios.post('https://real-time-quiz-app-backend.onrender.com/api/quizzes/quiz', { question, answers })
       .then(res => {
         console.log(res);
       })

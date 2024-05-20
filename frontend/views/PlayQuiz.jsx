@@ -5,7 +5,7 @@ import WinnerPage from './Winner'
 import { useDispatch, useSelector } from 'react-redux'
 import { setWinner } from '../src/features/winner/winnerSlice'
 
-const socket = io.connect('http://localhost:8000/', {
+const socket = io.connect('https://real-time-quiz-app-backend.onrender.com', {
   transports: ['websocket', 'polling']
 })
 

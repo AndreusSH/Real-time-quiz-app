@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import io from 'socket.io-client'
 
-const socket = io.connect('http://localhost:8000/', {
+const socket = io.connect('https://real-time-quiz-app-backend.onrender.com', {
   transports: ['websocket', 'polling']
 })
 

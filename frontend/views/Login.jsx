@@ -13,16 +13,18 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:8000/api/users/login', { email, password })
+    axios.post('https://real-time-quiz-app-backend.onrender.com/api/users/login', { email, password })
       .then(res => {
         console.log(res);
         // Redirect to profile page on successful login
         navigate('/api/users/admin'); // Use navigate instead of history.push
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        console.log('here we have an error', err);
+        alert('Email or password are not valid');
+      });
   };
-
-
+  
 
   return (
     <div className="container">

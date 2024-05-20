@@ -12,7 +12,7 @@ export const QuizDetail = () => {
         // Fetch quiz details only if quizId exists
         if (quizId) {
             axios
-                .get(`http://localhost:8000/api/quizzes/playQuiz/${quizId}`)
+                .get(`https://real-time-quiz-app-backend.onrender.com/api/quizzes/playQuiz/${quizId}`)
                 .then(response => {
                     setQuiz(response.data.quiz) // Set the quiz details in the state
                 })

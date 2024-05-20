@@ -1,0 +1,5 @@
+.clicked {
+    border: 2px solid blue; /* Example style for clicked card */
+    background-color: #f0f8ff; /* Light blue background */
+    transition: background-color 0.3s ease, border 0.3s ease;
+  }
