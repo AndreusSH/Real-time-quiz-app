@@ -8,7 +8,7 @@ You can access the admin panel at the following URL:
 
 [Admin Panel](https://graceful-crumble-1f87ec.netlify.app/)
 
-Email: user2@gmail.com
+Email: admin2@gmail.com
 Password: 1234567
 
 You can add a new quiz at the following URL:
