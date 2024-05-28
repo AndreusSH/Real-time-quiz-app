@@ -20,7 +20,7 @@ const server = http.createServer(app)
 const io = new Server(server) // Initialize Socket.IO Server
 
 // Enable CORS for all requests
-const allowedOrigins = ['https://graceful-crumble-1f87ec.netlify.app', 'https://golden-haupia-4e2758.netlify.app/', 'http://localhost:3000', 'https://real-time-quiz-app-orcin.vercel.app/'];
+const allowedOrigins = ['https://graceful-crumble-1f87ec.netlify.app', 'https://golden-haupia-4e2758.netlify.app/', 'http://localhost:3000', 'https://delicate-yeot-bbdd60.netlify.app/'];
 app.use(cors({
   origin: function (origin, callback) {
     // Allow requests with no origin (like mobile apps or curl requests)
