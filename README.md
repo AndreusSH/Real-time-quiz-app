@@ -26,6 +26,8 @@ Who scores 5 point wins!
 
 Note: There are several points I can/want to improve, as soon as I get more time to dedicate to this, I will improve it :-) 
 
+![TGIF App Demo](TGIF.gif)
+
+
 ### Since this is hosted on a free server, wait a minute before to log in! 
 
-![TGIF App Demo](TGIF.gif)
