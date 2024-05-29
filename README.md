@@ -13,7 +13,7 @@ Password: 1234567
 
 You can add a new quiz at the following URL:
 
-[Create Quiz](https://delicate-yeot-bbdd60.netlify.app//api/quizzes/createQuiz)
+[Create Quiz](https:/delicate-yeot-bbdd60.netlify.app//api/quizzes/createQuiz)
 
 ## Playing the Quiz
 
